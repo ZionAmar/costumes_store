@@ -1,4 +1,4 @@
-export let products = [
+export let myProducts = [
     {
         code:1,
         image:"batman.webp",

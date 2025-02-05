@@ -2,7 +2,11 @@ import { Form } from "react-router-dom";
 
 export default function AddProduct() {
   return (
-    <Form method="post" action="/" className="add-product-form">
+    <Form method="post" action="/" className="add_product_form">
+      <label>
+        קוד פריט
+        <input name="code" required />
+      </label>
       <label>
         נתיב תמונה
         <input name="image" required />

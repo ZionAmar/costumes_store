@@ -1,7 +1,6 @@
-import { products } from "../data/products";
 import Product from "./product";
 
-export default function ShowProducts() {
+export default function ShowProducts({products}) {
   return (
     <section className="cards">
       {products.map((p) => (
