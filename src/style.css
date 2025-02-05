@@ -1,0 +1,49 @@
+body {
+  direction: rtl;
+  background-color: aquamarine;
+}
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+}
+.link {
+  text-decoration: none;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.card {
+  background-color: white;
+  border-radius: 25px;
+  text-align: center;
+  display: inline-block;
+  border: 1px, solid, black;
+}
+.product_image {
+  width: 80%;
+  height: 130px;
+}
+.admin_container {
+  direction: ltr;
+  display: flex;
+  justify-content: space-between;
+}
+.adminMenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20%;
+  height: 90vh;
+}
+a {
+  text-decoration: none;
+}
+.cart {
+  text-align: center;
+}
+table {
+  margin: 0 auto;
+}
