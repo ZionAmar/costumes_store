@@ -12,7 +12,7 @@ export default function Product({ product }) {
         className="product_image"
       />
       <p>{product.description}</p>
-      <p>{product.price} ש''ח</p>
+      <p>{product.price} ₪</p>
       <button onClick={()=>{addToCart(product)}}>הוסף לסל 🛒</button>
     </div>
   );

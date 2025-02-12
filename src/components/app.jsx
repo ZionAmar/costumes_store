@@ -9,7 +9,7 @@ import EditProduct from "./editProduct";
 import Payment from "./payment";
 import { CartProvider } from "./cartContext";
 import { myProducts } from "../data/products";
-import { addProductAction } from "../functions/addProduct"; // ✅ ייבוא הפונקציה
+import { addProductAction } from "../functions/addProduct";
 
 export default function App() {
   const [products, setProducts] = useState(myProducts);
@@ -18,9 +18,8 @@ export default function App() {
     {
       path: "/",
       element: <Header />,
-      action: (args) => addProductAction({ ...args, state: { products, setProducts } }), // ✅ מעביר `setProducts` ל-`action`
       children: [
-        { index: true, element: <Home products={products} /> },
+        { index: true, element: <Home products={products}/> },
         { path: "cart", element: <Cart /> },
         { path: "payment", element: <Payment /> },
         {
@@ -28,7 +27,11 @@ export default function App() {
           element: <Admin />,
           children: [
             { index: true, element: <h1>עמוד מנהל</h1> },
-            { path: "addProduct", element: <AddProduct /> },
+            { 
+              path: "addProduct", 
+              element: <AddProduct />,
+              action: (args) => addProductAction({ ...args, setProducts }), // ✅ שולחים את `setProducts`
+            },
             { path: "editProduct", element: <EditProduct /> },
           ],
         },
