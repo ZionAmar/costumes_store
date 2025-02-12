@@ -27,7 +27,7 @@ export default function App() {
           path: "admin",
           element: <Admin />,
           children: [
-            { index: true, element: <AddProduct /> },
+            { index: true, element: <h1>עמוד מנהל</h1> },
             { path: "addProduct", element: <AddProduct /> },
             { path: "editProduct", element: <EditProduct /> },
           ],

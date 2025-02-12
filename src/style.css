@@ -1,6 +1,7 @@
 body {
   direction: rtl;
   background-color: aquamarine;
+  text-align: center;
 }
 .navBar {
   display: flex;

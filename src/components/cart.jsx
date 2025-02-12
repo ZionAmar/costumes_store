@@ -7,7 +7,7 @@ export default function Cart() {
   return (
     <div className="cart">
       {cart.length === 0 ? (
-        <p>העגלה שלך ריקה</p>
+        <p>🛒 העגלה שלך ריקה</p>
       ) : (
         <table border="1">
           <thead>
@@ -24,12 +24,10 @@ export default function Cart() {
               <tr key={index}>
                 <td>{product.description}</td>
                 <td>₪{product.price}</td>
-                <td>{product.quantity || 1}</td>
-                <td>₪{(product.price * (product.quantity || 1)).toFixed(2)}</td>
+                <td>{product.quantity}</td>
+                <td>₪{(product.price * product.quantity).toFixed(2)}</td>
                 <td>
-                  <button onClick={() => removeFromCart(product.code)}>
-                    🗑️ מחק
-                  </button>
+                  <button onClick={() => removeFromCart(product.code)}>🗑️ מחק פריט</button>
                 </td>
               </tr>
             ))}
