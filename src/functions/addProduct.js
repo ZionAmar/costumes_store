@@ -8,7 +8,5 @@ export async function addProductAction({ request, setProducts }) {
     price: Number(formData.get("price")),
   };
 
-  console.log("✅ מוצר נוסף:", newProduct);
-
   setProducts((prevProducts) => [...prevProducts, newProduct]);
 }

@@ -7,8 +7,6 @@ export async function editProductAction({ request, products, setProducts }) {
     price: Number(formData.get("price")),
   };
 
-  console.log("✅ מוצר שעודכן:", updatedProduct);
-
   setProducts((prevProducts) =>
     prevProducts.map((p) => (p.code === updatedProduct.code ? updatedProduct : p))
   );

@@ -6,6 +6,7 @@ export default function Payment() {
   const orderData = useActionData(); // נתוני ההזמנה מה-`action`
 
   const totalPrice = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
+  const productCodes = cart.map(product => product.code).join(","); // רשימת קודי המוצרים
 
   return (
     <div className="payment">
@@ -18,8 +19,10 @@ export default function Payment() {
           <p>✅ התשלום התקבל בהצלחה!</p>
           <h3>📜 פרטי ההזמנה:</h3>
           <p><strong>שם הלקוח:</strong> {orderData.name}</p>
+          <p><strong>ת.ז:</strong> {orderData.idNumber}</p>
           <p><strong>כתובת:</strong> {orderData.address}</p>
           <p><strong>סה"כ לתשלום:</strong> ₪{orderData.total}</p>
+          <p><strong>קודי המוצרים:</strong> {orderData.productCodes}</p>
         </>
       ) : (
         <>
@@ -54,11 +57,18 @@ export default function Payment() {
             </label>
 
             <label>
+              🆔 ת.ז:
+              <input type="text" name="idNumber" required pattern="\d{9}" title="יש להזין ת.ז עם 9 ספרות" />
+            </label>
+
+            <label>
               📍 כתובת למשלוח:
               <input type="text" name="address" required />
             </label>
 
+            {/* שדות נסתרים עם הסכום והקודים */}
             <input type="hidden" name="total" value={totalPrice.toFixed(2)} />
+            <input type="hidden" name="productCodes" value={productCodes} />
 
             <button type="submit">💳 שלם עכשיו</button>
           </Form>

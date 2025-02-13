@@ -2,7 +2,7 @@ import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 
 export default function Admin() {
-  const [productCode, setProductCode] = useState(""); // סטייט לשמירת קוד המוצר
+  const [productCode, setProductCode] = useState("");
 
   return (
     <div className="admin_container">

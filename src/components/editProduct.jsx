@@ -2,8 +2,8 @@ import { Form, useLoaderData, useParams } from "react-router-dom";
 import { useState } from "react";
 
 export default function EditProduct() {
-  const { productId } = useParams(); // מקבל את ה- ID של המוצר מהנתיב
-  const loadedProducts = useLoaderData(); // רשימת כל המוצרים
+  const { productId } = useParams(); 
+  const loadedProducts = useLoaderData(); 
   const initialProduct = loadedProducts.find((p) => p.code === Number(productId)) || { code: "", image: "", description: "", price: "" };
 
   const [product, setProduct] = useState(initialProduct);
@@ -19,10 +19,7 @@ export default function EditProduct() {
   }
 
   return (
-    <div>
-      <h1>🛠️ עריכת מוצר</h1>
-      
-      <Form method="post">
+      <Form method="post" className="edit_product_form">
         <label>
           🔍 קוד מוצר:
           <input 
@@ -49,6 +46,5 @@ export default function EditProduct() {
         </label>
         <button type="submit">🔄 עדכן מוצר</button>
       </Form>
-    </div>
   );
 }

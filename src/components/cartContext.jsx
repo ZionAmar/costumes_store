@@ -7,7 +7,6 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]); // עגלת הקניות
 
-  // ✅ הוספת מוצר לעגלה (אם קיים – מגדיל כמות)
   function addToCart(product) {
     setCart((prevCart) => {
       const existingProduct = prevCart.find((p) => p.code === product.code);
@@ -21,7 +20,6 @@ export function CartProvider({ children }) {
     });
   }
 
-  // ✅ מחיקת פריט אחת ממוצר בעגלה
   function removeFromCart(productCode) {
     setCart((prevCart) =>
       prevCart

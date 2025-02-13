@@ -1,13 +1,15 @@
+import { redirect } from "react-router-dom";
+
 export async function paymentAction({ request }) {
-    const formData = await request.formData();
-    const orderData = {
-      name: formData.get("name"),
-      address: formData.get("address"),
-      total: formData.get("total"),
-    };
-  
-    console.log("✅ הזמנה נשמרה:", orderData);
-  
-    return orderData; // הנתונים יוחזרו ל`useActionData` ב-Payment.jsx
-  }
-  
+  const formData = await request.formData();
+
+  const orderDetails = {
+    name: formData.get("name"),
+    idNumber: formData.get("idNumber"),
+    address: formData.get("address"),
+    total: formData.get("total"),
+    productCodes: formData.get("productCodes"),
+  };
+
+  return orderDetails; 
+}
