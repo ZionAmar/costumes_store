@@ -1,19 +1,26 @@
 import { useCart } from "./cartContext";
-import { useState } from "react";
+import { Form, useActionData } from "react-router-dom";
 
 export default function Payment() {
-  const { cart } = useCart(); // ✅ מקבלים את העגלה מה-Context
-  const [paid, setPaid] = useState(false); // ✅ ניהול סטטוס התשלום
+  const { cart } = useCart();
+  const orderData = useActionData(); // נתוני ההזמנה מה-`action`
 
-  // ✅ חישוב מחיר כולל של כל המוצרים בעגלה
   const totalPrice = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
 
   return (
     <div className="payment">
-      <h2>קופה</h2>
+      <h2>🛒 קופה</h2>
 
       {cart.length === 0 ? (
-        <p>🛒 אין מוצרים בעגלה</p>
+        <p>אין מוצרים בעגלה</p>
+      ) : orderData ? (
+        <>
+          <p>✅ התשלום התקבל בהצלחה!</p>
+          <h3>📜 פרטי ההזמנה:</h3>
+          <p><strong>שם הלקוח:</strong> {orderData.name}</p>
+          <p><strong>כתובת:</strong> {orderData.address}</p>
+          <p><strong>סה"כ לתשלום:</strong> ₪{orderData.total}</p>
+        </>
       ) : (
         <>
           <table border="1">
@@ -39,11 +46,22 @@ export default function Payment() {
 
           <h3>💰 סה"כ לתשלום: ₪{totalPrice.toFixed(2)}</h3>
 
-          {!paid ? (
-            <button onClick={() => setPaid(true)}>💳 שלם עכשיו</button>
-          ) : (
-            <p>✅ שולם בהצלחה!</p>
-          )}
+          {/* 🔥 שימוש ב-Form עם method="post" */}
+          <Form method="post">
+            <label>
+              👤 שם מלא:
+              <input type="text" name="name" required />
+            </label>
+
+            <label>
+              📍 כתובת למשלוח:
+              <input type="text" name="address" required />
+            </label>
+
+            <input type="hidden" name="total" value={totalPrice.toFixed(2)} />
+
+            <button type="submit">💳 שלם עכשיו</button>
+          </Form>
         </>
       )}
     </div>

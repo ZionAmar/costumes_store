@@ -12,6 +12,7 @@ import { myProducts } from "../data/products";
 import { addProductAction } from "../functions/addProduct";
 import { editProductAction } from "../functions/editProduct"; // ✅ ייבוא פעולה
 import { editProductLoader } from "../functions/editProductLoader"; // ✅ ייבוא ה-Loader
+import { paymentAction } from "../functions/paymentAction"; // 🔥 הוספת פונקציית התשלום
 
 export default function App() {
   const [products, setProducts] = useState(myProducts);
@@ -23,7 +24,7 @@ export default function App() {
       children: [
         { index: true, element: <Home products={products} /> },
         { path: "cart", element: <Cart /> },
-        { path: "payment", element: <Payment /> },
+        { path: "payment", element: <Payment />, action: paymentAction },
         {
           path: "admin",
           element: <Admin />,
