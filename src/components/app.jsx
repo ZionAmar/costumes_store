@@ -10,6 +10,8 @@ import Payment from "./payment";
 import { CartProvider } from "./cartContext";
 import { myProducts } from "../data/products";
 import { addProductAction } from "../functions/addProduct";
+import { editProductAction } from "../functions/editProduct"; // ✅ ייבוא פעולה
+import { editProductLoader } from "../functions/editProductLoader"; // ✅ ייבוא ה-Loader
 
 export default function App() {
   const [products, setProducts] = useState(myProducts);
@@ -19,7 +21,7 @@ export default function App() {
       path: "/",
       element: <Header />,
       children: [
-        { index: true, element: <Home products={products}/> },
+        { index: true, element: <Home products={products} /> },
         { path: "cart", element: <Cart /> },
         { path: "payment", element: <Payment /> },
         {
@@ -27,12 +29,17 @@ export default function App() {
           element: <Admin />,
           children: [
             { index: true, element: <h1>עמוד מנהל</h1> },
-            { 
-              path: "addProduct", 
+            {
+              path: "addProduct",
               element: <AddProduct />,
-              action: (args) => addProductAction({ ...args, setProducts }), // ✅ שולחים את `setProducts`
+              action: (args) => addProductAction({ ...args, setProducts }),
             },
-            { path: "editProduct", element: <EditProduct /> },
+            { 
+              path: "editProduct/:productId?",
+              element: <EditProduct />,
+              loader: async (args) => editProductLoader({ ...args, products }),
+              action: async (args) => editProductAction({ ...args, products, setProducts })
+            },
           ],
         },
       ],
